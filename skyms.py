@@ -1,19 +1,15 @@
-from pydev import pydevd
-pydevd.settrace('10.86.47.70', port=9001, stdoutToServer=True, stderrToServer=True, suspend=False)
-
 import sys
 import settings
 import time
 import traceback
 from flask import request
 
-#sys.path.append(settings.distroRoot + "/ipc/python")
-#sys.path.append(settings.distroRoot + "/interfaces/skype/python")
-
 try:
     import Skype
 except ImportError:
-    raise SystemExit("Program requires Skype and skypekit modules")
+    raise SystemExit("Program requires skypekit andSkype modules from "+
+                     "<skypekitsdk>/ipc/python and <skypekitsdk>/interfaces/skype/python respectively")
+
 SkypeInstance = Skype.GetSkype(settings.keyFileName)
 SkypeInstance.Start()
 

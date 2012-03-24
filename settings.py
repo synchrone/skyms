@@ -1,7 +1,5 @@
-# You will need to replace keyFileName with a valid keypair filename
+#skype interaction client cert
 keyFileName = 'dev.pem'
-distroRoot 	= '~/skypekit-sdk_sdk-3.7.0.20_1021208'
-host = '127.0.0.1'
-port = 8963
+#the account data
 skypeLogin = 'username'
 skypePassword = 'password'
