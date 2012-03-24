@@ -1,12 +1,14 @@
 from pydev import pydevd
-pydevd.settrace('192.168.20.161', port=9001, stdoutToServer=True, stderrToServer=True, suspend=False)
+pydevd.settrace('10.86.47.70', port=9001, stdoutToServer=True, stderrToServer=True, suspend=False)
 
 import sys
 import settings
 import time
-import logging
-sys.path.append(settings.distroRoot + "/ipc/python")
-sys.path.append(settings.distroRoot + "/interfaces/skype/python")
+import traceback
+from flask import request
+
+#sys.path.append(settings.distroRoot + "/ipc/python")
+#sys.path.append(settings.distroRoot + "/interfaces/skype/python")
 
 try:
     import Skype
@@ -32,24 +34,50 @@ account.LoginWithPassword(settings.skypePassword)
 while not loggedIn:
     time.sleep(1)
 
+convList = SkypeInstance.GetConversationList('REALLY_ALL_CONVERSATIONS')
+print('Found ' + str(len(convList)) + ' conversations.')
+N = 1
+
+for c in convList:
+    if c.type =='CONFERENCE':
+        print(str(N) + '. ' + c.displayname + '  (type = ' + c.type + ') blob: '+c.GetJoinBlob())
+        N += 1
+
 # proceding with web-handling stuff
 from flask import Flask, url_for
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',methods=['GET'])
 def index():
-    return 'Usage: GET ' + url_for('channel_message',channel='CHANNEL',message='MESSAGE')
+    return 'Usage: GET ' + url_for('channel_message',channel='CHANNEL',message='MESSAGE') + '''
+        <br />
+        OR <form method='POST'>
+            <input type='test' name='channel' /><br />
+            <textarea name='message'></textarea>
+            <input type='submit' />
+        </form>'''
 
+
+@app.route('/',methods=['POST'])
 @app.route('/<channel>/<message>',methods=['GET'])
-def channel_message(channel,message):
+def channel_message(channel=None,message=None):
+
+    if request.method == 'POST':
+        channel = request.form['channel']
+        message = request.form['message']
+
     try:
+        #Skype conference BLOB is like:
+        # skype:?chat&blob=HrO22b73C8eeDucL4CR8OfDNI_chxBOJ6CbNZtQTMFRVG2KFcG_kGGFF3g2uLT3s
         conversation = SkypeInstance.GetConversationByBlob(channel, True)
+        conversation.PostText(message, False)
+        return 'OK'
+
     except Exception as e:
-        return  traceback.format_exception(*sys.exc_info())
-    conversation.PostText(message, False)
-    return 'OK'
-
-
+        app.logger.error(
+            "<br />\n".join(traceback.format_exception(*sys.exc_info()))
+        )
+        return 'ERROR'
 
 if __name__ == '__main__':
     import logging
