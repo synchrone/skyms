@@ -7,7 +7,7 @@ from flask import request
 try:
     import Skype
 except ImportError:
-    raise SystemExit("Program requires skypekit andSkype modules from "+
+    raise SystemExit("Program requires skypekit and Skype modules from "+
                      "<skypekitsdk>/ipc/python and <skypekitsdk>/interfaces/skype/python respectively")
 
 SkypeInstance = Skype.GetSkype(settings.keyFileName)
