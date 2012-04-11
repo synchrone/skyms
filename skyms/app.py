@@ -20,6 +20,10 @@ def AccountOnChange(self, property_name):
         if self.status == 'LOGGED_IN':
             loggedIn = True
             print('Login complete.')
+        else:
+            print('Status changed to '+self.status)
+    else:
+        print('Account property changed: '+property_name+'. New value: '+str(getattr(self,property_name)))
 Skype.Account.OnPropertyChange = AccountOnChange
 
 account = SkypeInstance.GetAccount(settings.skypeLogin)
