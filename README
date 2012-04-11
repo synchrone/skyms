@@ -4,14 +4,15 @@ It can send messages with urlencoded text to a BLOB-identified Skype conversatio
 Requirements:
 1) SkypeKit SDK (only 2 python files are needed from there)
 2) SkypeKit Runtime (generated on a per-user basis)
-3) Your http://developer.skype.com/account/projects
+3) Your client certificate for usage with skypekit runtime
 all available from http://developer.skype.com/skypekit/releases/skypekit-3-7-0 after a 5$ registration fee
 
 Installation:
 1) Modify skyms/settings.py to reflect your skype account and SkypeKit certificate,
 2) Place your skypekit.py and Skype.py from <skypekitsdk>/ipc/python and <skypekitsdk>/interfaces/skype/python respectively to skypekit directory
-3) Place SkypeKit Runtime binary named <os>-<arch>-skypekit-novideo (e.g. linux-x86-skypekit-novideo) to skypekit folder and set chmod +x on it
-4) `dotcloud push <your_service_name>`
+3) Place SkypeKit Runtime binary named <os>-<arch>-skypekit-novideo (e.g. linux-x86-skypekit-novideo) to skypekit directory and set chmod +x on it
+4) Place your client certificate to skypekit directory
+5) `dotcloud push <your_service_name>`
 
 Check if everything went OK with `dotcloud logs <your_service_name>.www` command
 
