@@ -1,0 +1,4 @@
+www:
+    type: python
+    systempackages:
+        - ia32-libs
