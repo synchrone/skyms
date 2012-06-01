@@ -3,3 +3,4 @@ dev.pem
 v1.pem
 *.egg
 skypekit/*
+*.pyc
