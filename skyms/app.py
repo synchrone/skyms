@@ -83,12 +83,17 @@ def channel_message(channel=None,message=None):
         print "Getting converstaion "+channel
         conversation = SkypeInstance.GetConversationByBlob(channel)
         print "Posing text..."
-        conversation.PostText(message, False)
-        return 'OK'
+        conversation.PostText(message, True)
 
+        response = app.make_response('OK')
     except Exception as e:
         print "ERROR: " + e.msg + "\n" + "\n".join(traceback.format_exception(*sys.exc_info()))
-        return 'ERROR'
+        response = app.make_response('ERROR')
+        response.status_code = 500
+
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'POST'
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
