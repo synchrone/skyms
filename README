@@ -8,11 +8,11 @@ Requirements:
 all available from http://developer.skype.com/skypekit/releases/skypekit-3-7-0 after a 5$ registration fee
 
 Installation:
-1) Modify skyms/settings.py to reflect your skype account and SkypeKit certificate,
+1) Modify skyms/settings.py to reflect your skype account and SkypeKit certificate path,
 2) Place your skypekit.py and Skype.py from <skypekitsdk>/ipc/python and <skypekitsdk>/interfaces/skype/python respectively to skypekit directory
 3) Place SkypeKit Runtime binary named <os>-<arch>-skypekit-novideo (e.g. linux-x86-skypekit-novideo) to skypekit directory and set chmod +x on it
 4) Place your client certificate to skypekit directory
-5) `dotcloud push <your_service_name>`
+5) `dotcloud push --all <your_service_name>` (all to push your changes, not my generic repo version)
 
 Check if everything went OK with `dotcloud logs <your_service_name>.www` command
 
