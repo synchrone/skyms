@@ -36,7 +36,7 @@ def AccountOnChange(self, property_name):
         else:
             print('Status changed to '+self.status)
     else:
-        print(property_name + ' changed to: '+getattr(self,property_name))
+        print(property_name + ' changed to: '+str(getattr(self,property_name)))
 Skype.Account.OnPropertyChange = AccountOnChange
 conferenceCount = 0
 def OnConversationListChange(_self,conversation,type,added):
