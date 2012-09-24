@@ -2,10 +2,8 @@ This is a cloud-based skype messaging gateway service.
 It can send messages with urlencoded text to a BLOB-identified Skype conversation, which can be very useful for deployment announcements, bug reports, etc.
 
 Requirements:
-1) SkypeKit SDK (only 2 python files are needed from there)
-2) SkypeKit Runtime (generated on a per-user basis)
-3) Your client certificate for usage with skypekit runtime
-all available from http://developer.skype.com/skypekit/releases/skypekit-3-7-0 after a 5$ registration fee
+1) SkypeKit SDK (only 2 python files are needed from there) and Runtime (http://developer.skype.com/skypekit/releases/skypekit-3-7-hf1/download)
+2) Your client certificate for usage with skypekit runtime (http://developer.skype.com/account/projects)
 
 Installation:
 1) Modify skyms/settings.py to reflect your skype account and SkypeKit certificate path,
