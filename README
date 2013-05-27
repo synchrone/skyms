@@ -3,6 +3,7 @@ It can send messages with urlencoded text to a BLOB-identified Skype conversatio
 
 Requirements:
 1) SkypeKit SDK (only 2 python files are needed from there) and Runtime (http://developer.skype.com/skypekit/releases/skypekit-3-7-hf1/download)
+Note: This code was not tested with other versions, and since Skype does not provide old versions anymore, compatibility cannot be guaranteed)
 2) Your client certificate for usage with skypekit runtime (http://developer.skype.com/account/projects)
 
 Installation:
