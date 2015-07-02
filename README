@@ -1,3 +1,6 @@
+==NOTE: SkypeKit was shut down, so this project is inherently dead as well==
+
+
 This is a cloud-based skype messaging gateway service.
 It can send messages with urlencoded text to a BLOB-identified Skype conversation, which can be very useful for deployment announcements, bug reports, etc.
 
